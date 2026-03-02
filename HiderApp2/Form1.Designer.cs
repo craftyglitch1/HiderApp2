@@ -32,6 +32,9 @@
             btnConfirm = new Button();
             comBoxPrograms = new ComboBox();
             notifyIcon1 = new NotifyIcon(components);
+            txtKeyBind = new TextBox();
+            label1 = new Label();
+            btnSetHotkey = new Button();
             SuspendLayout();
             // 
             // btnConfirm
@@ -58,11 +61,40 @@
             notifyIcon1.Visible = true;
             notifyIcon1.MouseClick += notifyIcon1_MouseClick;
             // 
+            // txtKeyBind
+            // 
+            txtKeyBind.Location = new Point(27, 158);
+            txtKeyBind.Name = "txtKeyBind";
+            txtKeyBind.Size = new Size(151, 27);
+            txtKeyBind.TabIndex = 2;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(27, 136);
+            label1.Name = "label1";
+            label1.Size = new Size(74, 20);
+            label1.TabIndex = 3;
+            label1.Text = "Key Bind: ";
+            // 
+            // btnSetHotkey
+            // 
+            btnSetHotkey.Location = new Point(27, 191);
+            btnSetHotkey.Name = "btnSetHotkey";
+            btnSetHotkey.Size = new Size(151, 29);
+            btnSetHotkey.TabIndex = 4;
+            btnSetHotkey.Text = "Set Hotkey";
+            btnSetHotkey.UseVisualStyleBackColor = true;
+            btnSetHotkey.Click += btnSetHotkey_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(195, 115);
+            ClientSize = new Size(195, 225);
+            Controls.Add(btnSetHotkey);
+            Controls.Add(label1);
+            Controls.Add(txtKeyBind);
             Controls.Add(comBoxPrograms);
             Controls.Add(btnConfirm);
             Name = "Form1";
@@ -70,6 +102,7 @@
             Load += Form1_Load;
             Resize += Form1_Resize;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -77,5 +110,8 @@
         private Button btnConfirm;
         private ComboBox comBoxPrograms;
         private NotifyIcon notifyIcon1;
+        private TextBox txtKeyBind;
+        private Label label1;
+        private Button btnSetHotkey;
     }
 }

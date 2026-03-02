@@ -15,6 +15,7 @@ namespace HiderApp2
 
         const int HIDEACTION_HOTKEY_ID = 1;
         const int WM_HOTKEY = 0x0312;
+        private int keyBind;
 
         private Process[] openedProcesses = Process.GetProcesses();
         private string selectedProcessName;
@@ -29,14 +30,11 @@ namespace HiderApp2
         public Form1()
         {
             InitializeComponent();
-
-            // 0: Just the Key, 1: Alt, 2: Control, 4: Shift
-            RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, 2 | 1 | 4, (int)Keys.L);
         }
 
         protected override void WndProc(ref Message m)
         {
-            if(m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HIDEACTION_HOTKEY_ID)
+            if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HIDEACTION_HOTKEY_ID)
             {
                 foreach (Process running in openedProcesses)
                 {
@@ -82,12 +80,14 @@ namespace HiderApp2
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (comBoxPrograms.SelectedItem != null)
+            if (comBoxPrograms.SelectedItem != null && keyBind != 0)
             {
                 selectedProcessName = comBoxPrograms.SelectedItem.ToString();
                 MessageBox.Show("Selected " + selectedProcessName);
                 this.WindowState = FormWindowState.Minimized;
             }
+            else if(keyBind == 0)
+                MessageBox.Show("You have not selected a keybind!");
             else
                 MessageBox.Show("You have not selected a program!");
         }
@@ -110,6 +110,24 @@ namespace HiderApp2
             this.Show();
             this.WindowState = FormWindowState.Normal;
             notifyIcon1.Visible = false;
+        }
+
+        private void btnSetHotkey_Click(object sender, EventArgs e)
+        {
+            if(txtKeyBind.Text != "")
+            {
+                foreach(Keys key in Enum.GetValues<Keys>())
+                {
+                    if(key.ToString() == txtKeyBind.Text.ToUpper())
+                    {
+                        keyBind = (int)key;
+                        break;
+                    }
+                }
+                RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, 2 | 1 | 4, keyBind);
+                btnSetHotkey.Enabled = false;
+                txtKeyBind.Enabled = false;
+            }
         }
     }
 }
