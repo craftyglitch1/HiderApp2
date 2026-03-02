@@ -16,6 +16,7 @@ namespace HiderApp2
         const int HIDEACTION_HOTKEY_ID = 1;
         const int WM_HOTKEY = 0x0312;
         private int keyBind;
+        private string[] keyParts; 
 
         private Process[] openedProcesses = Process.GetProcesses();
         private string selectedProcessName;
@@ -76,6 +77,7 @@ namespace HiderApp2
             notifyIcon1.Icon = Properties.Resources.hidericon;
             notifyIcon1.Visible = false;
             MessageBox.Show("This program will minimize to tray");
+            MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: CTRL+ALT+SHIFT+L");
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -114,17 +116,61 @@ namespace HiderApp2
 
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
+            int fsModifiers;
+            int p1 = 0;
+            int p2 = 0;
+            int p3 = 0;
             if(txtKeyBind.Text != "")
             {
+                keyParts = txtKeyBind.Text.ToUpper().Split('+');
+                switch(keyParts[0])
+                {
+                    case "CTRL":
+                        p1 = 2;
+                        break;
+                    case "ALT":
+                        p1 = 1;
+                        break;
+                    case "SHIFT":
+                        p1 = 4;
+                        break;
+                }
+                switch (keyParts[1])
+                {
+                    case "CTRL":
+                        p2 = 2;
+                        break;
+                    case "ALT":
+                        p2 = 1;
+                        break;
+                    case "SHIFT":
+                        p2 = 4;
+                        break;
+                }
+                switch (keyParts[2])
+                {
+                    case "CTRL":
+                        p3 = 2;
+                        break;
+                    case "ALT":
+                        p3 = 1;
+                        break;
+                    case "SHIFT":
+                        p3 = 4;
+                        break;
+                }
+                fsModifiers = p1 | p2 | p3;
                 foreach(Keys key in Enum.GetValues<Keys>())
                 {
-                    if(key.ToString() == txtKeyBind.Text.ToUpper())
+                    if (key.ToString() == keyParts[3])
                     {
                         keyBind = (int)key;
                         break;
                     }
                 }
-                RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, 2 | 1 | 4, keyBind);
+
+                // 2: Control, 1: Alt, 4: Shift
+                RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, fsModifiers, keyBind);
                 btnSetHotkey.Enabled = false;
                 txtKeyBind.Enabled = false;
             }
