@@ -126,7 +126,7 @@ namespace HiderApp2
             int p3 = 0;  
             if (txtKeyBind.Text != "")
             {
-                // 2: Control, 1: Alt, 4: Shift
+                // 2: Control, 1: Alt, 4: Shift, 8: Win
                 keyParts = txtKeyBind.Text.ToUpper().Split('+');
                 switch (keyParts[0])
                 {
@@ -138,6 +138,9 @@ namespace HiderApp2
                         break;
                     case "SHIFT":
                         p1 = 4;
+                        break;
+                    case "WIN":
+                        p1 = 8;
                         break;
                     default:
                         MessageBox.Show("Invalid");
@@ -154,6 +157,9 @@ namespace HiderApp2
                     case "SHIFT":
                         p2 = 4;
                         break;
+                    case "WIN":
+                        p2 = 8;
+                        break;
                     default:
                         MessageBox.Show("Invalid");
                         break;
@@ -168,6 +174,9 @@ namespace HiderApp2
                         break;
                     case "SHIFT":
                         p3 = 4;
+                        break;
+                    case "WIN":
+                        p3 = 8;
                         break;
                     default:
                         MessageBox.Show("Invalid");
