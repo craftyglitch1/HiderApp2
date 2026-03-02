@@ -71,7 +71,7 @@ namespace HiderApp2
             {
                 if (process.MainWindowHandle != IntPtr.Zero && process.ProcessName != "explorer")
                 {
-                    comBoxPrograms.Items.Add(process.ProcessName);
+                    comBoxPrograms.Items.Add(process.ProcessName + $" ({process.ProcessName}.exe)");
                 }
             }
             hidden = false;
@@ -85,7 +85,8 @@ namespace HiderApp2
         {
             if (comBoxPrograms.SelectedItem != null && keyBind != 0)
             {
-                selectedProcessName = comBoxPrograms.SelectedItem.ToString();
+                string[] temp = comBoxPrograms.SelectedItem.ToString().Split(' ');
+                selectedProcessName = temp[0];
                 MessageBox.Show("Selected " + selectedProcessName);
                 this.WindowState = FormWindowState.Minimized;
             }
@@ -120,9 +121,9 @@ namespace HiderApp2
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
             int fsModifiers;
-            int p1 = 0;
-            int p2 = 0;
-            int p3 = 0;
+            int p1 = 0;  
+            int p2 = 0;  
+            int p3 = 0;  
             if (txtKeyBind.Text != "")
             {
                 // 2: Control, 1: Alt, 4: Shift
