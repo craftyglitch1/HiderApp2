@@ -122,10 +122,10 @@ namespace HiderApp2
             int p1 = 0;
             int p2 = 0;
             int p3 = 0;
-            if(txtKeyBind.Text != "")
+            if (txtKeyBind.Text != "")
             {
                 keyParts = txtKeyBind.Text.ToUpper().Split('+');
-                switch(keyParts[0])
+                switch (keyParts[0])
                 {
                     case "CTRL":
                         p1 = 2;
@@ -171,7 +171,7 @@ namespace HiderApp2
                         break;
                 }
                 fsModifiers = p1 | p2 | p3;
-                foreach(Keys key in Enum.GetValues<Keys>())
+                foreach (Keys key in Enum.GetValues<Keys>())
                 {
                     if (key.ToString() == keyParts[3])
                     {
@@ -185,6 +185,8 @@ namespace HiderApp2
                 btnSetHotkey.Enabled = false;
                 txtKeyBind.Enabled = false;
             }
+            else
+                MessageBox.Show("Please enter a value");
         }
     }
 }
