@@ -31,7 +31,6 @@ namespace HiderApp2
             InitializeComponent();
 
             // 0: Just the Key, 1: Alt, 2: Control, 4: Shift
-            // also this is the only comment fuck it we ball
             RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, 2 | 1 | 4, (int)Keys.L);
         }
 
