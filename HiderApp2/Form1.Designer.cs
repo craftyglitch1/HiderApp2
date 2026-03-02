@@ -35,6 +35,7 @@
             txtKeyBind = new TextBox();
             label1 = new Label();
             btnSetHotkey = new Button();
+            btnRefresh = new Button();
             SuspendLayout();
             // 
             // btnConfirm
@@ -87,11 +88,22 @@
             btnSetHotkey.UseVisualStyleBackColor = true;
             btnSetHotkey.Click += btnSetHotkey_Click;
             // 
+            // btnRefresh
+            // 
+            btnRefresh.Location = new Point(27, 215);
+            btnRefresh.Name = "btnRefresh";
+            btnRefresh.Size = new Size(151, 29);
+            btnRefresh.TabIndex = 5;
+            btnRefresh.Text = "Refresh";
+            btnRefresh.UseVisualStyleBackColor = true;
+            btnRefresh.Click += btnRefresh_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(195, 225);
+            ClientSize = new Size(195, 263);
+            Controls.Add(btnRefresh);
             Controls.Add(btnSetHotkey);
             Controls.Add(label1);
             Controls.Add(txtKeyBind);
@@ -113,5 +125,6 @@
         private TextBox txtKeyBind;
         private Label label1;
         private Button btnSetHotkey;
+        private Button btnRefresh;
     }
 }

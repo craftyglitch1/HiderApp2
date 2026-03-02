@@ -16,7 +16,7 @@ namespace HiderApp2
         const int HIDEACTION_HOTKEY_ID = 1;
         const int WM_HOTKEY = 0x0312;
         private int keyBind;
-        private string[] keyParts; 
+        private string[] keyParts;
 
         private Process[] runningProcesses = Process.GetProcesses();
         private string selectedProcessName;
@@ -90,7 +90,7 @@ namespace HiderApp2
                 MessageBox.Show("Selected " + selectedProcessName);
                 this.WindowState = FormWindowState.Minimized;
             }
-            else if(keyBind == 0)
+            else if (keyBind == 0)
                 MessageBox.Show("You have not selected a keybind!");
             else
                 MessageBox.Show("You have not selected a program!");
@@ -121,9 +121,9 @@ namespace HiderApp2
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
             int fsModifiers;
-            int p1 = 0;  
-            int p2 = 0;  
-            int p3 = 0;  
+            int p1 = 0;
+            int p2 = 0;
+            int p3 = 0;
             if (txtKeyBind.Text != "")
             {
                 // 2: Control, 1: Alt, 4: Shift, 8: Win
@@ -197,6 +197,18 @@ namespace HiderApp2
             }
             else
                 MessageBox.Show("Please enter a value");
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            runningProcesses = Process.GetProcesses();
+            foreach (Process process in runningProcesses)
+            {
+                if (process.MainWindowHandle != IntPtr.Zero && process.ProcessName != "explorer")
+                {
+                    comBoxPrograms.Items.Add(process.ProcessName + $" ({process.ProcessName}.exe)");
+                }
+            }
         }
     }
 }
