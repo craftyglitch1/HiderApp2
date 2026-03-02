@@ -63,7 +63,7 @@
             // 
             // txtKeyBind
             // 
-            txtKeyBind.Location = new Point(27, 158);
+            txtKeyBind.Location = new Point(27, 147);
             txtKeyBind.Name = "txtKeyBind";
             txtKeyBind.Size = new Size(151, 27);
             txtKeyBind.TabIndex = 2;
@@ -71,7 +71,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(27, 136);
+            label1.Location = new Point(27, 125);
             label1.Name = "label1";
             label1.Size = new Size(74, 20);
             label1.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // btnSetHotkey
             // 
-            btnSetHotkey.Location = new Point(27, 191);
+            btnSetHotkey.Location = new Point(27, 180);
             btnSetHotkey.Name = "btnSetHotkey";
             btnSetHotkey.Size = new Size(151, 29);
             btnSetHotkey.TabIndex = 4;
