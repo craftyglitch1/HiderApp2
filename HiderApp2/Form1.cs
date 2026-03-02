@@ -115,7 +115,7 @@ namespace HiderApp2
         }
 
 
-        // TODO: make this not crap (the array has hardcoded indexes for where things should be)
+        // TODO: make this not crap (the array has to be a certain length)
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
             int fsModifiers;
