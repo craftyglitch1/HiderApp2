@@ -114,6 +114,8 @@ namespace HiderApp2
             notifyIcon1.Visible = false;
         }
 
+
+        // TODO: make this not crap (the array has hardcoded indexes for where things should be)
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
             int fsModifiers;
