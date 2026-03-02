@@ -18,7 +18,7 @@ namespace HiderApp2
         private int keyBind;
         private string[] keyParts; 
 
-        private Process[] openedProcesses = Process.GetProcesses();
+        private Process[] runningProcesses = Process.GetProcesses();
         private string selectedProcessName;
         private bool hidden;
 
@@ -37,7 +37,7 @@ namespace HiderApp2
         {
             if (m.Msg == WM_HOTKEY && m.WParam.ToInt32() == HIDEACTION_HOTKEY_ID)
             {
-                foreach (Process running in openedProcesses)
+                foreach (Process running in runningProcesses)
                 {
                     if (running.ProcessName == selectedProcessName && selectedProcessName != "")
                     {
@@ -67,7 +67,7 @@ namespace HiderApp2
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            foreach (Process process in openedProcesses)
+            foreach (Process process in runningProcesses)
             {
                 if (process.MainWindowHandle != IntPtr.Zero && process.ProcessName != "explorer")
                 {
