@@ -134,6 +134,9 @@ namespace HiderApp2
                     case "SHIFT":
                         p1 = 4;
                         break;
+                    default:
+                        MessageBox.Show("Invalid");
+                        break;
                 }
                 switch (keyParts[1])
                 {
@@ -146,6 +149,9 @@ namespace HiderApp2
                     case "SHIFT":
                         p2 = 4;
                         break;
+                    default:
+                        MessageBox.Show("Invalid");
+                        break;
                 }
                 switch (keyParts[2])
                 {
@@ -157,6 +163,9 @@ namespace HiderApp2
                         break;
                     case "SHIFT":
                         p3 = 4;
+                        break;
+                    default:
+                        MessageBox.Show("Invalid");
                         break;
                 }
                 fsModifiers = p1 | p2 | p3;
