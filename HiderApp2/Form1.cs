@@ -76,7 +76,7 @@ namespace HiderApp2
             hidden = false;
             notifyIcon1.Icon = Properties.Resources.hidericon;
             notifyIcon1.Visible = false;
-            MessageBox.Show("This program will minimize to tray");
+            MessageBox.Show("WARNING: This program is very unsafe and has NOT been tested very well, use with caution", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: CTRL+ALT+SHIFT+L");
         }
 
