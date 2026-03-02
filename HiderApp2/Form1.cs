@@ -63,6 +63,7 @@ namespace HiderApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Icon = Properties.Resources.hidericon;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -124,6 +125,7 @@ namespace HiderApp2
             int p3 = 0;
             if (txtKeyBind.Text != "")
             {
+                // 2: Control, 1: Alt, 4: Shift
                 keyParts = txtKeyBind.Text.ToUpper().Split('+');
                 switch (keyParts[0])
                 {
@@ -179,8 +181,6 @@ namespace HiderApp2
                         break;
                     }
                 }
-
-                // 2: Control, 1: Alt, 4: Shift
                 RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, fsModifiers, keyBind);
                 btnSetHotkey.Enabled = false;
                 txtKeyBind.Enabled = false;
