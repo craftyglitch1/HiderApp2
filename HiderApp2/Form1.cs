@@ -63,6 +63,7 @@ namespace HiderApp2
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Text = "Hider App";
             this.Icon = Properties.Resources.hidericon;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -78,7 +79,7 @@ namespace HiderApp2
             notifyIcon1.Icon = Properties.Resources.hidericon;
             notifyIcon1.Visible = false;
             MessageBox.Show("WARNING: This program is very unsafe and has NOT been tested very well, use with caution", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: <MOD>+<MOD>+<MOD>+<KEY>");
+            MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: <MOD>+<MOD>+<MOD>+<KEY>", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
