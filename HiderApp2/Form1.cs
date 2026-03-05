@@ -78,7 +78,7 @@ namespace HiderApp2
             notifyIcon1.Icon = Properties.Resources.hidericon;
             notifyIcon1.Visible = false;
             MessageBox.Show("WARNING: This program is very unsafe and has NOT been tested very well, use with caution", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: CTRL+ALT+SHIFT+L");
+            MessageBox.Show("YOU MUST SET A HOTKEY WITH THE RIGHT FORMAT. EXAMPLE: <MOD>+<MOD>+<MOD>+<KEY>");
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
@@ -116,84 +116,105 @@ namespace HiderApp2
             notifyIcon1.Visible = false;
         }
 
-
-        // TODO: make this not crap (the array has to be a certain length)
         private void btnSetHotkey_Click(object sender, EventArgs e)
         {
             int fsModifiers;
             int p1 = 0;
             int p2 = 0;
             int p3 = 0;
+            bool valid = true;
             if (txtKeyBind.Text != "")
             {
                 // 2: Control, 1: Alt, 4: Shift, 8: Win
                 keyParts = txtKeyBind.Text.ToUpper().Split('+');
-                switch (keyParts[0])
+
+                // quick and dirty validity check
+                if (keyParts.Length == 4)
                 {
-                    case "CTRL":
-                        p1 = 2;
-                        break;
-                    case "ALT":
-                        p1 = 1;
-                        break;
-                    case "SHIFT":
-                        p1 = 4;
-                        break;
-                    case "WIN":
-                        p1 = 8;
-                        break;
-                    default:
-                        MessageBox.Show("Invalid");
-                        break;
-                }
-                switch (keyParts[1])
-                {
-                    case "CTRL":
-                        p2 = 2;
-                        break;
-                    case "ALT":
-                        p2 = 1;
-                        break;
-                    case "SHIFT":
-                        p2 = 4;
-                        break;
-                    case "WIN":
-                        p2 = 8;
-                        break;
-                    default:
-                        MessageBox.Show("Invalid");
-                        break;
-                }
-                switch (keyParts[2])
-                {
-                    case "CTRL":
-                        p3 = 2;
-                        break;
-                    case "ALT":
-                        p3 = 1;
-                        break;
-                    case "SHIFT":
-                        p3 = 4;
-                        break;
-                    case "WIN":
-                        p3 = 8;
-                        break;
-                    default:
-                        MessageBox.Show("Invalid");
-                        break;
-                }
-                fsModifiers = p1 | p2 | p3;
-                foreach (Keys key in Enum.GetValues<Keys>())
-                {
-                    if (key.ToString() == keyParts[3])
+                    switch (keyParts[0])
                     {
-                        keyBind = (int)key;
-                        break;
+                        case "CTRL":
+                            p1 = 2;
+                            break;
+                        case "ALT":
+                            p1 = 1;
+                            break;
+                        case "SHIFT":
+                            p1 = 4;
+                            break;
+                        case "WIN":
+                            p1 = 8;
+                            break;
+                        default:
+                            valid = false;
+                            break;
+                    }
+                    switch (keyParts[1])
+                    {
+                        case "CTRL":
+                            p2 = 2;
+                            break;
+                        case "ALT":
+                            p2 = 1;
+                            break;
+                        case "SHIFT":
+                            p2 = 4;
+                            break;
+                        case "WIN":
+                            p2 = 8;
+                            break;
+                        default:
+                            valid = false;
+                            break;
+                    }
+                    switch (keyParts[2])
+                    {
+                        case "CTRL":
+                            p3 = 2;
+                            break;
+                        case "ALT":
+                            p3 = 1;
+                            break;
+                        case "SHIFT":
+                            p3 = 4;
+                            break;
+                        case "WIN":
+                            p3 = 8;
+                            break;
+                        default:
+                            valid = false;
+                            break;
                     }
                 }
-                RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, fsModifiers, keyBind);
-                btnSetHotkey.Enabled = false;
-                txtKeyBind.Enabled = false;
+                else
+                {
+                    MessageBox.Show("Please set a keybind with this format <MOD>+<MOD>+<MOD>+<KEY>");
+                    valid = false;
+                }
+
+                if(valid)
+                {
+                    fsModifiers = p1 | p2 | p3;
+                    foreach (Keys key in Enum.GetValues<Keys>())
+                    {
+                        if (key.ToString() == keyParts[3])
+                        {
+                            keyBind = (int)key;
+                            break;
+                        }
+                    }
+                    RegisterHotKey(this.Handle, HIDEACTION_HOTKEY_ID, fsModifiers, keyBind);
+                    btnSetHotkey.Enabled = false;
+                    txtKeyBind.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("Invalid Key code");
+                    p1 = 0;
+                    p2 = 0;
+                    p3 = 0;
+                    fsModifiers = 0 | 0 | 0;
+                }
             }
             else
                 MessageBox.Show("Please enter a value");
