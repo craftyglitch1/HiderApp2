@@ -235,8 +235,8 @@ namespace HiderApp2
 
         private void label1_Click(object sender, EventArgs e)
         {
-            GameForm game = new GameForm();
-            game.ShowDialog();
+            CreditsForm credits = new CreditsForm();
+            credits.Show();
         }
     }
 }
