@@ -77,6 +77,7 @@
             label1.Size = new Size(74, 20);
             label1.TabIndex = 3;
             label1.Text = "Key Bind: ";
+            label1.Click += label1_Click;
             // 
             // btnSetHotkey
             // 

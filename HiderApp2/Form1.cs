@@ -193,7 +193,7 @@ namespace HiderApp2
                     valid = false;
                 }
 
-                if(valid)
+                if (valid)
                 {
                     fsModifiers = p1 | p2 | p3;
                     foreach (Keys key in Enum.GetValues<Keys>())
@@ -231,6 +231,12 @@ namespace HiderApp2
                     comBoxPrograms.Items.Add(process.ProcessName + $" ({process.ProcessName}.exe)");
                 }
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            GameForm game = new GameForm();
+            game.ShowDialog();
         }
     }
 }
