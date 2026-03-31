@@ -18,6 +18,8 @@ namespace HiderApp2
         private void CreditsForm_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Text = "Credits";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
     }
