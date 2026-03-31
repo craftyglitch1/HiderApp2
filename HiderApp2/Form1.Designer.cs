@@ -58,7 +58,7 @@
             // 
             // notifyIcon1
             // 
-            notifyIcon1.Text = "notifyIcon1";
+            notifyIcon1.Text = "Hider App";
             notifyIcon1.Visible = true;
             notifyIcon1.MouseClick += notifyIcon1_MouseClick;
             // 
